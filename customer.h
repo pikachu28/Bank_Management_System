@@ -18,8 +18,8 @@ public:
 	Cust();
 	Cust(long acc_no);
 	Cust(std::string name,std::string password,long acc_no);
-
 	~Cust();
+	int getCust_id();
 	double getBalance();
 	long getAcc_no();
 	void NewAccount();
