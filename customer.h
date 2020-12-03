@@ -1,6 +1,6 @@
 //Customer class
 
-#nclude<iostream>
+#include<iostream>
 #include<string>
 
 class Cust
