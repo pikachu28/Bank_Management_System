@@ -1,9 +1,7 @@
 //Customer class
 
-#ifndef<iostream>
-#ifndef<string>
-#endif
-
+#nclude<iostream>
+#include<string>
 
 class Cust
 {
@@ -13,8 +11,8 @@ private:
 	std::string custPassword="";
 	double balance=0.0;
 	long acc_no;
-	long phone_no;
-	string DOB;
+	std::string phone_no="";
+	std::string DOB="";
 	void setBalance(double b);
 public:
 	Cust();
@@ -24,9 +22,9 @@ public:
 	~Cust();
 	double getBalance();
 	long getAcc_no();
-
+	void NewAccount();
 	std::string getName();
 	void setName(std::string s);
 	void Deposit(double sum);
-	void withdraw(double sum);
+	void Withdraw(double sum);
 };
