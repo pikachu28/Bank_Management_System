@@ -1,7 +1,8 @@
 //Customer class
 
-#include<iostream>
-#include<string>
+#ifndef<iostream>
+#ifndef<string>
+#endif
 
 
 class Cust
@@ -12,6 +13,8 @@ private:
 	std::string custPassword="";
 	double balance=0.0;
 	long acc_no;
+	long phone_no;
+	string DOB;
 	void setBalance(double b);
 public:
 	Cust();
@@ -21,6 +24,7 @@ public:
 	~Cust();
 	double getBalance();
 	long getAcc_no();
+
 	std::string getName();
 	void setName(std::string s);
 	void Deposit(double sum);
