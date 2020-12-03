@@ -12,3 +12,10 @@
 
 <img width="1027" alt="Screenshot 2020-11-06 at 9 59 46 PM" src="https://user-images.githubusercontent.com/62153950/98390472-69060300-207b-11eb-9acd-78d0afaddc97.png">
 
+### To run the file:
+
+On Terminal/Command prompt
+
+g++ file_name -l sqlite3
+
+./a.out
