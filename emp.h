@@ -6,11 +6,13 @@ class employee
 {
 private:
    int emp_id;
-   std::string empName="";
+   std::string emp_name="";
    std::string empPassword="";
+   std::string emp_add="";
+   std::string emp_email="";
    std::string desig="";
    std::string DOB="";
-   std::string phone_no="";
+   std::string emp_moblie="";
 
 public:
    employee();
