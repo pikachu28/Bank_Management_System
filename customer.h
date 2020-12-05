@@ -7,11 +7,13 @@ class Cust
 {
 private:
 	int cust_id;
-	std::string custName="";
-	std::string custPassword="";
+	std::string cus_name="";
+	std::string cus_pass="";
+	std::string cus_add="";
+	std::string cus_email="";
 	double balance=0.0;
 	long acc_no;
-	std::string phone_no="";
+	std::string cus_mobile="";
 	std::string DOB="";
 	void setBalance(double b);
 public:
