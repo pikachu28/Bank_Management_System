@@ -50,7 +50,18 @@ public:
 
 
    void VeiwAllAccounts(); // to view all user accounts from the db.-*(cust_name and account_no only.)*
-   void SearchCustomer(); //to search for a customer details using cust_id or acc_no
+
+   void SearchCustomer(){
+      cout<<"\n\n Enter the Customer id of the customer to be searched";
+      cin>>cust_id;
+      bool  Result_of_Search_query;
+      if(Result_of_Search_query){
+         function_to_print_data_of_customer;
+      }
+      else{
+         cout<<"Sorry! Customer not found";
+      }
+   } //to search for a customer details using cust_id or acc_no
 
    void updateDetails(){
       cout<"\n\n Enter your new details";
@@ -70,6 +81,6 @@ public:
          cout<<"Sorry! the customer with entered customer id is not in the records";
          return;
       }
-      
+
    }; //to update customer details- **for managers only**
 };
