@@ -57,5 +57,19 @@ public:
       getRecord();
    } //to update name/phone no./DOB/Designation-(not password) of self
 
-   void updateCust_Details(); //to update customer details- **for managers only**
+   void updateCust_Details(){
+      int cust_id;
+      cout<<"\n\n Enter the customer id whose record you want to update";
+      cin>>cust_id;
+      bool Result_of_Search_query_on_cust_id;
+      if( Result_of_Search_query_on_cust_id){
+         cout<<"\n\n Enter the new details of the customer";
+         function_getdata_in_customerclass;
+      }
+      else{
+         cout<<"Sorry! the customer with entered customer id is not in the records";
+         return;
+      }
+      
+   }; //to update customer details- **for managers only**
 };
