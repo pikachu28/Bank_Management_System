@@ -49,7 +49,10 @@ public:
    }
 
 
-   void VeiwAllAccounts(); // to view all user accounts from the db.-*(cust_name and account_no only.)*
+   void VeiwAllAccounts(){
+      Select account_no from account_db
+      function_putdata_in_accountclass;
+   } // to view all user accounts from the db.-*(cust_name and account_no only.)*
 
    void SearchCustomer(){
       cout<<"\n\n Enter the Customer id of the customer to be searched";
