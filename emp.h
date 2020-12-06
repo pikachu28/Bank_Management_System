@@ -35,6 +35,15 @@ public:
       cout<<"Enter mobile no. of the employee";
       cin>>emp_moblie;
    }
+
+   void printRecord(){
+      cout<<"\n\n Employee Name :"<<emp_name;
+      cout<<"\n\n Employee Address: "<<emp_add;
+      cout<<"\n\n EMployee Email: "<<emp_email;
+      cout<<"\n\n Employee Designation: "<<desig;
+      cout<<"\n\n Date Of Birth: "<<DOB;
+      cout<<"\n\n Phone: "<<emp_moblie;
+   }
    void VeiwAllAccounts(); // to view all user accounts from the db.-*(cust_name and account_no only.)*
    void SearchCustomer(); //to search for a customer details using cust_id or acc_no
    void updateDetails(); //to update name/phone no./DOB/Designation-(not password) of self
