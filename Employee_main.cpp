@@ -12,6 +12,7 @@
 // 4: Managers
 
 #include <iostream>
+#include<emp.h>
 #include <sqlite3.h>
 using namespace std;
 
@@ -101,8 +102,43 @@ int main(int argc, const char * argv[]) {
         // string Name ="SELECT NAME FROM PERSON";
         // sqlite3_exec(db, Name.c_str(), callback, NULL, NULL);
     
-    
-      
+
+
+
+    //====================== Menu for the Employee Class ======================================
+ 
+        clrscr();
+        int a1;
+        cout<<"\n\n\n\tADMIN MENU";
+        cout<<"\n\n\t1.ENTER YOUR DETAILS";
+        cout<<"\n\n\t2.DISPLAY YOUR DETAILS";
+        cout<<"\n\n\t3.VIEW ALL THE ACCOUNTS";
+        cout<<"\n\n\t4.SEACRCH A CUSTOMER";
+        cout<<"\n\n\t5.UPDATE YOUR DETAILS";
+        cout<<"\n\n\t6.UPDATE A CUSTOMER'S DETAILS";
+        cout<<"\n\n\tPlease Enter Your Choice (1-6) ";
+        switch(a1)
+            {
+                case '1': clrscr();
+                        getRecord();
+                        break;
+                case '2': printRecord();
+                        break;
+                case '3':
+                        clrscr();
+                        VeiwAllAccounts();
+                        break;
+                case '4': SearchCustomer();
+                        break;
+                case '5': updateDetails();
+                        break;
+                case '6': updateCust_Details();
+                break;
+                case '7': break;
+                default:admin_menu();
+            }
+
+
     sqlite3_close(db);
     return 0;
 }
