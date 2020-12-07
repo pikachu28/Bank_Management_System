@@ -40,11 +40,26 @@ class Cust{
                 cout<<"\n\n\t Your Account has been created Successfully!";
 
                 cout<<"\n\n\t Your default Password is 0";
-                cout<<"\n\n\t CUSTOMER BANK BALANCE = 0;"
+                cout<<"\n\n\t CUSTOMER BANK BALANCE = 0";
                 //bank balance can be viewed on the table only - the default password line can be removed
 
                 cout<<"\n\n\t TO DEPOSIT MONEY PRESS 1";
                 cout<<"\n\n\t TO CHANGE PASSWORD PRESS 2";
+                
+                int a1;
+                cin>>a1;
+
+                switch(a1){
+                        case '1': clrscr();
+                                deposit_withdraw();
+                                break;
+                        case '2': clrscr();
+                                cust_updateDetails();
+                                //change details
+                                break;
+                        case '3': break;
+                        default: //go to home page
+                }
                 
         }
 
@@ -54,19 +69,21 @@ class Cust{
                 cin>>name;
                 cout<<"\n\n\t Enter Customer Id:";
                 cin>>acc_no;
-                cout<<"\n\n\t Enter Customer Address";
-                cin>>cust_add;
-                cout<<endl<<endl;
+                cout<<"\n\n\t Enter Password";
+                cin>>cust_pass;
 
                 //open the details table
-                //can also have CUSTOMER BANK BALANCE";
+                //can also have CUSTOMER BANK BALANCE"
 
                 cout<<endl;                
                 cout<<"\n\n\t TO UPDATE YOUR DETAILS PRESS 1";
                 cout<<"\n\n\t TO DEPOSIT OR WITHDRAW MONEY PRESS 2";
                 cout<<"\n\n\tPlease Enter Your Choice (1 OR 2) ";
+                
+                int b1;
+                cin>>b1;
 
-                switch(a1){
+                switch(b1){
                         case '1': clrscr();
                                 cust_updateDetails();
                                 break;
@@ -79,10 +96,12 @@ class Cust{
         }
 
         void cust_updateDetails(){
-                cout<<"\n\n\t1.Enter your name";
-                cout<<"\n\n\t2.Enter your account number";
-                cout<<"\n\n\t2.Enter your DOB";
-                cout<<endl;
+                cout<<"\n\n\t Enter Customer Name:";
+                cin>>name;
+                cout<<"\n\n\t Enter Customer Id:";
+                cin>>acc_no;
+                cout<<"\n\n\t Enter Password";
+                cin>>cust_pass;
 
                 //cout the table of your details.
                 cout<<"\n\n\n\tCUSTOMER DETAILS";
@@ -92,54 +111,69 @@ class Cust{
                 cout<<"\n\n\t2. To change your Email ID";
                 cout<<"\n\n\t3. To change your Phone number";
                 cout<<"\n\n\t4. To change your Designation";
-                cout<<"\n\n\tPlease Enter Your Choice (1-4)";
+                cout<<"\n\n\t5. To change your Password";
+                cout<<"\n\n\tPlease Enter Your Choice (1-5)";
                 cout<<endl;
-                int a1;
-                cin>>a1;
+                int c1;
+                cin>>c1;
 
-                switch(a1){
+                switch(c1){
                         case '1': clrscr();
-                                cout<<"Enter New Address: "
+                                cout<<"Enter New Address: ";
                                 break;
                         case '2': clrscr();
-                                cout<<"Enter New Email ID: "
+                                cout<<"Enter New Email ID: ";
                                 break;
                         case '3': clrscr();
-                                cout<<"Enter New Phone number: "
+                                cout<<"Enter New Phone number: ";
                                 break;
                         case '4': clrscr();
-                                //here we can delete the account and make an employee account with same data.
-                        case '5': break;
+                                //here we can delete the account and make an employee account with same data
+                                //two dbms commands to be included
+                        case '5': clrscr();
+                                cout<<"Enter New Password: ";
+                                break;
+                        case '6': break;
                         default: //dont change anything
                 }
-
-                //cout the table of your details.
                 cout<<"\n\n\n\tUPDATED CUSTOMER DETAILS";
+                 //cout the table of your details.
         }
 
         void deposit_withdraw(){
-                cout<<"Enter the amount you want to deposit or withdraw: "
-                cout<<"NOTE: to withdraw - use - sign"
+                cout<<"\n\n\t Enter Customer Name:";
+                cin>>name;
+                cout<<"\n\n\t Enter Customer Id:";
+                cin>>acc_no;
+                cout<<"\n\n\t Enter Password";
+                cin>>cust_pass;
+                
+                //show table 
+                cout<<"Enter the amount you want to deposit or withdraw: ";
+                cout<<"NOTE: to withdraw, use the negative sign with the amount";
                 //make changes in account details and display the updated table;
 
                 //or we can make a switch case;
         }
 
         void delete_acc(){
-
                 cout<<"\n\n\n\tCUSTOMER DETAILS";
                 cout<<"\n\n\t Enter Customer Name:";
-                cin>>cust_name;
-                cout<<"\n\n\t Enter Customer Account Number:";
+                cin>>name;
+                cout<<"\n\n\t Enter Customer Id:";
                 cin>>acc_no;
+                cout<<"\n\n\t Enter Password";
+                cin>>cust_pass;
+                
+                //show the account details.
 
                 cout<<"\n\n\t IF YOU WISH TO DELETE THE ACCOUNT PRESS 1";
                 cout<<"\n\n\t ELSE PRESS 2";
 
-                int a1;
-                cin>>a1;
+                int d1;
+                cin>>d1;
 
-                switch(a1){
+                switch(d1){
                         case '1': clrscr();
                                 //delete the account from the db
                                 break;
@@ -147,15 +181,12 @@ class Cust{
                                 //go to the customer menu
                                 break;
                         default: //go to the customer menu
-                }
-
-
-                
+                }                
         }
 
 };
 
-int a1;
+int key;
 cout<<"\n\n\n\tCUSTOMER MENU";
 cout<<"\n\n\t1.MAKE A NEW ACCOUNT";
 cout<<"\n\n\t2.DISPLAY YOUR DETAILS";
@@ -163,7 +194,8 @@ cout<<"\n\n\t3.UPDATE YOUR DETAILS";
 cout<<"\n\n\t4.DEPOSIT OR WITHDRAW MONEY";
 cout<<"\n\n\t5.DELETE ACCOUNT";
 cout<<"\n\n\tPlease Enter Your Choice (1-5) ";
-switch(a1){
+cin>>key;
+switch(key){
         case '1': clrscr();
                 newAccountCUST;
                 break;
