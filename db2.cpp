@@ -13,18 +13,47 @@ static int callback(void* NoUse, int argc, char** argv, char** azColNAme);
 int main()
 {
 	//createDB();
-	db empdb;
+	database empdb;
 	empdb.createEmpTable();
-	insertData();
-	string table = "employee";
-	selectData(table);
+	int id;
+	string nm, desgn, dob, gen, ps;
+	/*
+	id = 200;
+	nm = "Binni K"; desgn = "Employee"; dob = "2000/10/31"; gen = "F";
+	ps = "bin01";
+	*/
+	cout << "\nCREATE NEW RECORD:=\n";
+	cout << "Enter Id: ";
+	cin >> id;
+	cout << "Enter name: ";
+	cin >> nm;
+	cout << "Enter Designation: ";
+	cin >> desgn;
+	cout << "Enter dob(YYYY/MM/DD): ";
+	cin >> dob;
+	cout << "Enter gender(M/F): ";
+	cin >> gen;
+	cout << "Enter passwprd: ";
+	cin >> ps;
 
-	sqlite3_close(db);		//close database
+	empdb.insertEmpData(id, nm, desgn, dob, gen, ps);
+
+	cout << "\n\t---All Employees Record---";
+	empdb.printEmpData();
 	return 0;
 }
 
-int db::open_db(string s) {
-	status = sqlite3_open(s, &db);
+database::database()
+{
+	open_db();
+}
+database::~database()
+{
+	close_db();
+}
+int database::open_db() 
+{
+	int status = sqlite3_open("EMPLOYEE.db", &db);
 	if (status) {
 		cout<<"Can't open database: \n"<<sqlite3_errmsg(db);
 		return 0;
@@ -35,22 +64,27 @@ int db::open_db(string s) {
 	return status;
 }
 
-void db::createEmpTable()
+void database::createEmpTable()
 {
 	//SQL statement to create table in database if not exists
 	sql = "CREATE TABLE IF NOT EXISTS employee("
-		"emp_id INT PRIMARY KEY AUTOINCREMENT,"
+		"emp_id INT PRIMARY KEY,"
 		"emp_name VARCHAR(60) NOT NULL,"
 		"emp_desig VARCHAR(60),"
 		"empDOB DATE,"
 		"gender CHAR NOT NULL,"
-		"emp_password VARCHAR(20) UNIQUE NOT NULL);";
+		"emp_password VARCHAR(20) NOT NULL);";
 
 	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &err);		//executing SQL statement
 	if (rc != SQLITE_OK)
-		cout << "Error: " << err;
+		cout << "Error: " << err << endl;
+	else
+	{
+		cout << "Table EMPLOYEE created!";
+	}
 }
-void db::insertEmpData(int empid,string name,string desig,string dob,string gender,string pass)
+//function to insert data into employee database
+void database::insertEmpData(int empid,string name,string desig,string dob,string gender,string pass)
 {
 	//SQL query to insert values into the table
 	query = "INSERT INTO employee VALUES ('001','Akash Verma','Manager','1990/10/21', 'M', 'pass01');"
@@ -60,26 +94,23 @@ void db::insertEmpData(int empid,string name,string desig,string dob,string gend
 		"INSERT INTO employee VALUES ('103','Sahil Rustagi','Employee', '1992/01/22', 'M', 'pass103');";
 	
 	//To execute insert SQL query
-	rc = sqlite3_exec(db, query.c_str(), NULL, NULL, &err);
+	//rc = sqlite3_exec(db, query.c_str(), NULL, NULL, &err);
+
+	string com = "','";
+	string id = to_string(empid);
+	string s = "INSERT INTO employee VALUES('" + id + com + name + com + desig + com + dob + com + gender + com + pass + "' );";
+	rc = sqlite3_exec(db, s.c_str(), NULL, NULL, &err);
 	if (rc != SQLITE_OK)
-		cout << "Insert Error: " << err;
+		cout << "Insert Error: " << err << endl;
 	else
-		cout << "Values inserted successfully!" << endl;
-	string com = "','"
-	string s = "INSERT INTO employee VALUES('" + empid + com + name + com + desig + com + dob + com + gender + com + pass + ");";
-	rc = sqlite3_exec(db, query.c_str(), NULL, NULL, &err);
-	if (rc != SQLITE_OK)
-		cout << "Insert Error: " << err;
-	else
-		cout << "Values inserted successfully!" << endl;
+		cout << "-> Record created successfully!" << endl;
 }
-static int selectData(string table_name)
+
+void database::printEmpData()
 {
-	string sql = "SELECT * FROM ";
-	sql = sql + table_name + ";";
-	cout << sql;
-	//sqlite3_exec(db, sql.c_str(), callback, NULL, NULL);
-	return 0;
+	string sql = "SELECT * FROM employee;";
+	cout << endl << sql << endl;
+	sqlite3_exec(db, sql.c_str(), callback, NULL, NULL);
 }
 //function to retrieve contents of the database
 //used by selectData() function
@@ -96,3 +127,8 @@ static int callback(void* NoUse, int argc, char** argv, char** azColName)
 //azColName:holds each column returned in array
 //argv:holds each value in array
 
+
+void database::close_db()
+{
+	sqlite3_close(db);
+}
