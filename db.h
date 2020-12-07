@@ -15,9 +15,10 @@ public:
 	void close_db();
 	void createEmpTable();
 	//void createCustTable();
+	//sql query
 	//void createTransactionTable();
 	//void check(int);
 	void insertEmpData(int empid, std::string name, std::string desig, std::string dob, std::string gender, std::string pass);
+	//void insertCustData();
 	void printEmpData();
-
 };
