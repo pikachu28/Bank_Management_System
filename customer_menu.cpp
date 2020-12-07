@@ -50,7 +50,7 @@ void Cust::newAccountCUST()
         cout << "\n\t Enter Customer Address: ";
         cin >> cust_add;
         cout << "\n\t Enter Gender (M/F): ";
-        cin >> cust_add;
+        cin >> cust_sex;
 
 
         //make an account and show the details.
@@ -147,6 +147,7 @@ void Cust::newAccountCUST()
             //here we can delete the account and make an employee account with same data
             //two dbms commands to be included
             //3. is not working on my laptop 
+            break;
         case 4: clrscr();
             cout << "\n\t Enter New Password: ";
             cin>>cust_pass;
