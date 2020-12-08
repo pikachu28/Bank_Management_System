@@ -12,7 +12,7 @@ void employee_menu()
 	cout << "\t\t\t\tBANK MANAGEMENT SYSTEM";
 	cout << "\n\t\t\t\t======================\n";
 
-	cout << "\t\t\t\t    ::EMPLOYEE LOGIN::\n";
+	cout << "\t\t\t\t    ::EMPLOYEE MENU::\n";
 	cout << "\n\t\t\t\t1. NEW RECORD";
 	cout << "\n\t\t\t\t2. UPDATE DETAILS";
 	cout << "\n\t\t\t\t3. VIEW CUSTOMER ACCOUNTS";
@@ -31,16 +31,16 @@ void cust_menu()
 	cout << "\t\t\t\tBANK MANAGEMENT SYSTEM";
 	cout << "\n\t\t\t\t======================\n";
 
-	cout << "\t\t\t\t    ::EMPLOYEE LOGIN::\n";
-	cout << "\n\t\t\t\t1. NEW RECORD";
+	cout << "\t\t\t\t    ::CUSTOMER MENU::\n";
+	cout << "\n\t\t\t\t1. NEW ACCOUNT";
 	cout << "\n\t\t\t\t2. UPDATE DETAILS";
-	cout << "\n\t\t\t\t3. VIEW CUSTOMER ACCOUNTS";
-	cout << "\n\t\t\t\t4. MODIFY AN ACCOUNT";
-	cout << "\n\t\t\t\t5. ALL ACCOUNT HOLDER LIST";
-	cout << "\n\t\t\t\t6. CLOSE AN ACCOUNT";
+	cout << "\n\t\t\t\t3. DEPOSIT";
+	cout << "\n\t\t\t\t4. WITHDRAW";
+	cout << "\n\t\t\t\t6. DELETE ACCOUNT";
 	cout << "\n\t\t\t\t7. BACK TO MAIN MENU";
-	cout << "\n\n\t\t\tEnter your option(1-8)=> ";
+	cout << "\n\n\t\t\tEnter your option(1-7)=> ";
 	cin >> ch;
+	
 }
 int main()
 {
