@@ -23,6 +23,25 @@ void employee_menu()
 	cout << "\n\n\t\t\tEnter your option(1-8)=> ";
 	cin >> ch;
 }
+void cust_menu()
+{
+	int ch;
+	system("CLS");
+	cout << "\n\n\t\t\t\t======================\n";
+	cout << "\t\t\t\tBANK MANAGEMENT SYSTEM";
+	cout << "\n\t\t\t\t======================\n";
+
+	cout << "\t\t\t\t    ::EMPLOYEE LOGIN::\n";
+	cout << "\n\t\t\t\t1. NEW RECORD";
+	cout << "\n\t\t\t\t2. UPDATE DETAILS";
+	cout << "\n\t\t\t\t3. VIEW CUSTOMER ACCOUNTS";
+	cout << "\n\t\t\t\t4. MODIFY AN ACCOUNT";
+	cout << "\n\t\t\t\t5. ALL ACCOUNT HOLDER LIST";
+	cout << "\n\t\t\t\t6. CLOSE AN ACCOUNT";
+	cout << "\n\t\t\t\t7. BACK TO MAIN MENU";
+	cout << "\n\n\t\t\tEnter your option(1-8)=> ";
+	cin >> ch;
+}
 int main()
 {
 	int ch;
@@ -55,6 +74,7 @@ int main()
 		case 3:
 				system("CLS");
 				cout << "\n\n\t\t\tGo to Customer Login";
+				cust_menu();
 				break;
 		case 4:
 				system("CLS");
