@@ -38,7 +38,7 @@ void cust_menu()
 	cout << "\n\t\t\t\t4. WITHDRAW";
 	cout << "\n\t\t\t\t5. DELETE ACCOUNT";
 	cout << "\n\t\t\t\t6. BACK TO MAIN MENU";
-	cout << "\n\n\t\t\tEnter your option(1-7)=> ";
+	cout << "\n\n\t\t\tEnter your option(1-6)=> ";
 	cin >> ch;
 	
 	int key;
