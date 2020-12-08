@@ -41,6 +41,23 @@ void cust_menu()
 	cout << "\n\n\t\t\tEnter your option(1-7)=> ";
 	cin >> ch;
 	
+	int key;
+	switch (key) {
+		case 1: clrscr();
+			newAccountCUST();
+			break;
+		case 2: cust_updateDetails();
+			break;
+		case 3: deposit();
+			break;
+		case 4: withdraw();
+			break;
+		case 5: delete_acc();
+			break;
+		case 6: 
+			break;
+		case 7: break;
+	   }
 }
 int main()
 {
