@@ -161,37 +161,25 @@ void Cust::newAccountCUST()
         //cout the table of your details.
     }
 
-    void Cust::deposit_withdraw() {
-        // cout << "\n\n\t Enter Customer Name:";
-        // cin >> cust_name;
-        // cout << "\n\n\t Enter Customer Id:";
-        // cin >> acc_no;
-        // cout << "\n\n\t Enter Password";
-        // cin >> cust_pass;
+    void Cust::deposit() {
+        cout << "\n\t Enter the amount you want to deposit: ";
+        cin>>amount;
 
-        //show table
+        //make changes in the account transaction section
+        //amount is declared locally - change it to your class            
+    }
 
-        cout << "\n\t 1. TO WITHDRAW";
-        cout << "\n\t 2. TO DEPOSIT";
-        cout << "\n\t Please Enter Your Choice (1 OR 2) ";
+    void Cust::withdraw() {
+        cout << "\n\t Enter the amount you want to withdraw: ";
+        cin>>amount;
 
-        int b1, amount;
-        cin >> b1;
-
-        switch (b1) {
-                case 1: 
-                cout << "\n\t Enter the amount you want to withdraw: ";
-                cin>>amount;
-                //make changes in the account transaction section
-                //amount is declared locally - change it to your class
-                break;
-                case 2:
-                cout << "\n\t Enter the amount you want to deposit: ";
-                cin>>amount;
-                //make changes in the account transaction section
-                //amount is declared locally - change it to your class
-                break;
-                case 3: break;
+        if(amount>balance){
+            cout<<"Low Balance!"<<": "<<balance<<endl;
+            cout<<"You can't withdraw the amount!"
+        }
+        else{
+            //make changes in the account transaction section
+            //amount is declared locally - change it to your class
         }
     }
 
@@ -228,11 +216,12 @@ int main(){
    int key;
    cout << "\n\n\t CUSTOMER MENU";
    cout << "\n\t 1.MAKE A NEW ACCOUNT";
-   cout << "\n\t 2.DISPLAY YOUR DETAILS";
-   cout << "\n\t 3.UPDATE YOUR DETAILS";
-   cout << "\n\t 4.DEPOSIT OR WITHDRAW MONEY";
-   cout << "\n\t 5.DELETE ACCOUNT";
-   cout << "\n\t Please Enter Your Choice (1-5) ";
+   cout << "\n\t 2.UPDATE YOUR DETAILS";
+   cout << "\n\t 3.DEPOSIT";
+   cout << "\n\t 4.WITHDRAW";
+   cout << "\n\t 5. DELETE ACCOUNT";
+   cout<<  "\n\t 6. BACK TO MAIN MENU";
+   cout << "\n\t Please Enter Your Choice (1-6) ";
    cin >> key;
    Cust c1;
    switch (key) {
