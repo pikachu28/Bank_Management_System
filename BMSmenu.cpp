@@ -36,8 +36,8 @@ void cust_menu()
 	cout << "\n\t\t\t\t2. UPDATE DETAILS";
 	cout << "\n\t\t\t\t3. DEPOSIT";
 	cout << "\n\t\t\t\t4. WITHDRAW";
-	cout << "\n\t\t\t\t6. DELETE ACCOUNT";
-	cout << "\n\t\t\t\t7. BACK TO MAIN MENU";
+	cout << "\n\t\t\t\t5. DELETE ACCOUNT";
+	cout << "\n\t\t\t\t6. BACK TO MAIN MENU";
 	cout << "\n\n\t\t\tEnter your option(1-7)=> ";
 	cin >> ch;
 	
@@ -54,9 +54,7 @@ void cust_menu()
 			break;
 		case 5: delete_acc();
 			break;
-		case 6: 
-			break;
-		case 7: break;
+		case 6: break;
 	   }
 }
 int main()
