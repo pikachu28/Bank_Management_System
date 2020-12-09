@@ -9,7 +9,7 @@ int main(){
 	cout << "\n\t\t\t\t1. INSERT EMPLOYEE'S RECORD";
 	cout << "\n\t\t\t\t2. UPDATE DETAILS OF AN EMPLOYEE";
 	cout << "\n\t\t\t\t3. DELETE EMPLOYEE RECORD";
-	cout << "\n\t\t\t\t4. BACK TO ADMIN SMENU";
+	cout << "\n\t\t\t\t4. BACK TO ADMIN MENU";
 	cout << "\n\n\t\t\tEnter your option(1-4)=> ";
 	cin >> ch;
 
