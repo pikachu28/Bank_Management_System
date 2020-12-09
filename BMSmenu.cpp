@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include<emp.h>
 using namespace std;
 
 void employee_menu()
@@ -22,6 +23,26 @@ void employee_menu()
 	cout << "\n\t\t\t\t7. BACK TO MAIN MENU";
 	cout << "\n\n\t\t\tEnter your option(1-8)=> ";
 	cin >> ch;
+
+	switch(ch)
+            {
+                case '1': 
+                        getRecord();
+                        break;
+                case '2': printRecord();
+                        break;
+                case '3':
+                        VeiwAllAccounts();
+                        break;
+                case '4': SearchCustomer();
+                        break;
+                case '5': updateDetails();
+                        break;
+                case '6': updateCust_Details();
+                break;
+                case '7': break;
+                default:admin_menu();
+            }
 }
 void cust_menu()
 {
