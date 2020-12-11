@@ -9,13 +9,8 @@ inline void clrscr()
   system("cls");
 }
 database tempdb;
+static int check = 0;
 
-int check = 0;
-
-Cust::Cust(long n)
-{
-    acc_no = n;
-}
 void Cust::NewAccount()
 {
     system("CLS");
@@ -30,7 +25,6 @@ void Cust::NewAccount()
     cin >> name;
     cout << "\n\t\t\tGender : ";
     cin >> gender;
-    gender = toupper(gender);
     cout << "\n\t\t\tEnter Mobile No. : ";
     cin >> mobile;
     cout << "Enter Date of Birth (YYYY/MM/DD): ";
@@ -57,7 +51,6 @@ void Cust::updateDetails()
     cin >> name;
     cout << "\n\t\t\tGender : ";
     cin >> gender;
-    gender = toupper(gender);
     cout << "\n\t\t\tEnter Mobile No. : ";
     cin >> mobile;
     cout << "\n\t\t\tEnter Date of Birth (YYYY/MM/DD): ";
@@ -128,7 +121,7 @@ void Cust::viewDetails()
 void Cust::deposit()
 {
     system("CLS");
-    int amt;
+    float amt;
     cout << "\n\t\t\t-DEPOSIT MONEY- \n";
     cout << "\n\t\t\tEnter the Amount : ";
     cin >> amt;
@@ -142,11 +135,11 @@ void Cust::deposit()
 
 void Cust::withdraw()
 {
-    int amt;
+    float amt;
     cout << "\n\t\t\t-WITHDRAW MONEY- \n";
     cout << "\n\t\t\tEnter the Amount : ";
     cin >> amt;
-    if (tempdb.checkSufficientBalance) {
+    if (tempdb.checkSufficientBalance(acc_no, amt)) {
         amt = amt * (-1);
         check = tempdb.updateCustBalance(acc_no, amt);
         if (check)
