@@ -1,5 +1,5 @@
 #include<iostream>
-#include<sqlite3.h>
+#include"sqlite3.h"
 #include"db.h"
 
 using namespace std;
@@ -7,28 +7,27 @@ using namespace std;
 char* err;
 sqlite3* db;
 int rc = 0;
-string sql, query, display, data;
+std::string sql, query, display, data;
 static int callback(void* NoUse, int argc, char** argv, char** azColNAme);
 
 database::database()
 {
 	open_db();
+	create_db();
 }
 database::~database()
 {
 	close_db();
 }
-int database::open_db() 
+void database::open_db()
 {
 	int status = sqlite3_open("BANK.db", &db);
 	if (status) {
-		cout<<"Can't open database: \n"<<sqlite3_errmsg(db);
-		return 0;
+		cout << "Can't open database: \n" << sqlite3_errmsg(db);
 	}
 	else {
-		cout<<"Opened database successfully!\n";
+		cout << "Opened database successfully!\n";
 	}
-	return status;
 }
 void database::create_db()
 {
@@ -64,7 +63,7 @@ void database::createEmpTable()
 	}
 }
 //function to insert data into employee database
-int database::insertEmpData(int empid,string name,string desig,string dob,string gender,string pass)
+int database::insertEmpData(int empid, string name, string desig, string dob, string gender, string pass)
 {
 	string com = "','";
 	string id = to_string(empid);
@@ -98,7 +97,7 @@ int database::updateEmpData(int empid, std::string name, std::string desig, std:
 void database::getEmpData(int empid)
 {
 	string id = to_string(empid);
-	sql = "SELECT * FROM employee WHERE EmployeeID="+id+";";
+	sql = "SELECT * FROM employee WHERE EmployeeID=" + id + ";";
 	sqlite3_exec(db, sql.c_str(), callback, NULL, NULL);
 }
 //function to delete employee data
@@ -126,13 +125,13 @@ void database::createCustTable()
 {
 	//SQL statement to create table in database if not exists
 	sql = "CREATE TABLE IF NOT EXISTS customer("
-		"AccountNo INT PRIMARY KEY AUTO_INCREMENT=1000,"
+		"AccountNo INT PRIMARY KEY,"
 		"Name VARCHAR(60) NOT NULL,"
 		"Balance DOUBLE NOT NULL,"
 		"DoB DATE,"
 		"PhoneNo VARCHAR(60),"
 		"Gender CHAR,"
-		"emp_password VARCHAR(20) NOT NULL);";
+		"password VARCHAR(20) NOT NULL);";
 
 	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &err);		//executing SQL statement
 	if (rc != SQLITE_OK) {
@@ -186,12 +185,12 @@ float database::getCustBalance(int acc_no)
 	return 0.0f;
 }
 //Function to check if the balance is sufficient for withdrawal
-int database::checkSufficientBalance(int acc_no,int amount)
+int database::checkSufficientBalance(int acc_no, float amount)
 {
 	string ac_no = to_string(acc_no);
 	string amt = to_string(amount);
 	sql = "SELECT * FROM customer WHERE AccountNo='" + ac_no + "' AND " + amt + "<Balance;";
-	rc=sqlite3_exec(db, sql.c_str(), callback, NULL, NULL);
+	rc = sqlite3_exec(db, sql.c_str(), callback, NULL, NULL);
 	if (rc != SQLITE_OK) {
 		return 0;
 	}
@@ -200,7 +199,8 @@ int database::checkSufficientBalance(int acc_no,int amount)
 	}
 	return 0;
 }
-int database::updateCustBalance(int acc_no,float amount)
+
+int database::updateCustBalance(int acc_no, float amount)
 {
 	float balance = getCustBalance(acc_no);
 	balance = balance + amount;
@@ -243,7 +243,7 @@ static int callback(void* NoUse, int argc, char** argv, char** azColName)
 {
 	for (int i = 0; i < argc; i++) {
 		//column name and value
-		cout << "\n\t\t\t" << azColName[i] << ": " << argv[i] ;
+		cout << "\n\t\t\t" << azColName[i] << ": " << argv[i];
 	}
 	cout << endl;
 	return 0;
@@ -252,9 +252,8 @@ static int callback(void* NoUse, int argc, char** argv, char** azColName)
 //azColName:holds each column returned in array
 //argv:holds each value in array
 
-
-
-bool empLogin() {
+bool database::empLogin()
+{
 	string password, id;
 	system("CLS");
 	cout << "\n\t\t\t-EMPLOYEE LOGIN- \n";
@@ -262,23 +261,45 @@ bool empLogin() {
 	cin >> id;
 	cout << "\n\t\t\tEnter password : ";
 	cin >> password;
-	data = "Select *FROM employee WHERE EmployeeID='" + id + "' and emp_password='" + password + "'";
-	rc = sqlite3_exec(db, data.c_str(), callback, NULL, NULL);
+	sql = "Select *FROM employee WHERE EmployeeID='" + id + "' and emp_password='" + password + "'";
+	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, NULL);
 	if (rc != SQLITE_OK) {
 		cout << "\n\t\t\tYou are not an authenticated user" << endl;
-		sqlite3_free(messageError);
 		return false;
 	}
 	else {
 		//write whatever function u wnat to perform in this block after login
-		string query = "SELECT  *FROM employee WHERE EmployeeID='" + id + "'";
+		//string query = "SELECT  *FROM employee WHERE EmployeeID='" + id + "'";
 		cout << "\n\t\t\tDone...You can access your account!" << endl;
 		//sqlite3_exec(db, query.c_str(), callback, NULL, NULL);
 		return true;
 	}
 }
-
-bool adminLogin() {
+bool database::custLogin()
+{
+	string password, no;
+	system("CLS");
+	cout << "\n\t\t\t-CUSTOMER LOGIN- \n";
+	cout << "\n\t\t\tEnter your Account No : ";
+	cin >> no;
+	cout << "\n\t\t\tEnter password : ";
+	cin >> password;
+	sql = "Select *FROM customer WHERE AccountNo='" + no + "' and password='" + password + "'";
+	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, NULL);
+	if (rc != SQLITE_OK) {
+		cout << "\n\t\t\tYou are not an authenticated user" << endl;
+		return false;
+	}
+	else {
+		//write whatever function u wnat to perform in this block after login
+		//string query = "SELECT  *FROM employee WHERE EmployeeID='" + id + "'";
+		cout << "\n\t\t\tDone...You can access your account!" << endl;
+		//sqlite3_exec(db, query.c_str(), callback, NULL, NULL);
+		return true;
+	}
+}
+bool database::adminLogin()
+{
 	string password;
 	string id;
 	system("CLS");
@@ -287,18 +308,17 @@ bool adminLogin() {
 	cin >> id;
 	cout << "\n\t\t\tEnter password : ";
 	cin >> password;
-	data = "Select *FROM Administrator WHERE AdminId='" + id + "' and Password='" + password + "'";
-	rc = sqlite3_exec(db, data.c_str(), callback, NULL, NULL);
+
+	//sql = "Select *FROM Administrator WHERE AdminId='" + id + "' and Password='" + password + "'";
+//	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, NULL);
 	if (rc != SQLITE_OK) {
 		cout << "\n\t\t\tYou are not an admin!" << endl;
-		sqlite3_free(messageError);
 		return false;
 	}
 	else {
 		cout << "\n\t\t\t-WELCOME-" << endl;
 		return true;
 	}
+
 }
-
-
 
