@@ -1,12 +1,10 @@
 #include <iostream>
-#include<sqlite3.h>
-#include"sqlite.h"
-#include"customer.h"
+#include"sqlite3.h"
 #include"db.h"
+#include"customer.h"
 #include"employee.h"
 
 using namespace std;
-
 database db1;
 Cust cust1;
 employee emp1;
@@ -91,7 +89,7 @@ void cust_menu()
 			break;
 		}
 	} while (ch < 6);
- }
+}
 void admin_menu()
 {
 	int ch;
@@ -132,9 +130,9 @@ void admin_menu()
 
 int main()
 {
-	
 
-	int ch,c;
+
+	int ch, c;
 	do
 	{
 		system("CLS");
@@ -153,57 +151,56 @@ int main()
 		switch (ch)
 		{
 		case 1:
-				system("CLS");
-				cout << "\n\n\t\t\tGoing To Admin Login....";
-				if(adminLogin())
-				{
-					admin_menu();
-				}
-				break;
+			system("CLS");
+			cout << "\n\n\t\t\tGoing To Admin Login....";
+			if (db1.empLogin())
+			{
+				admin_menu();
+			}
+			break;
 		case 2:
-				system("CLS");
-				//employee_menu();
-				cout << "\n\t\t\t\t1. EMPLOYEE LOGIN";
-				cout << "\n\t\t\t\t2. NEW EMPLOYEE REGISTRAION";
-				cout << "\n\n\t\t\tEnter your choice=> ";
-				cin >> c;
-				if (c == 1)
+			system("CLS");
+			//employee_menu();
+			cout << "\n\t\t\t\t1. EMPLOYEE LOGIN";
+			cout << "\n\t\t\t\t2. NEW EMPLOYEE REGISTRAION";
+			cout << "\n\n\t\t\tEnter your choice=> ";
+			cin >> c;
+			if (c == 1)
+			{
+				if (db1.empLogin())
 				{
-					if (empLogin())
-					{
-						cout << "\n\n\t\t\tGo To Employee Login";
-						employee_menu();
-					}
+					employee_menu();
 				}
-				else if(c==2)
-					emp1.NewEmployeeReg();
-				break;
+			}
+			else if (c == 2)
+				emp1.NewEmployeeReg();
+			break;
 		case 3:
-				system("CLS");
-				cout << "\n\t\t\t\t1. CUSTOMER LOGIN (Existing Customer)";
-				cout << "\n\t\t\t\t2. NEW ACCOUNT REGISTRAION";
-				cout << "\n\n\t\t\tEnter your choice=> ";
-				cin >> c;
-				if (c == 1)
+			system("CLS");
+			cout << "\n\t\t\t\t1. CUSTOMER LOGIN (Existing Customer)";
+			cout << "\n\t\t\t\t2. NEW ACCOUNT REGISTRAION";
+			cout << "\n\n\t\t\tEnter your choice=> ";
+			cin >> c;
+			if (c == 1)
+			{
+				//if (db1.custLogin())
 				{
-					if (empLogin())
-					{
-						cout << "\n\n\t\t\tGo To Customer Login";
-						employee_menu();
-					}
+					cout << "\n\n\t\t\tGo To Customer Login";
+					cust_menu();
 				}
-				else if (c == 2)
-					emp1.NewEmployeeReg();
-				break;
+			}
+			else if (c == 2)
+				cust1.NewAccount();
+			break;
 		case 4:
-				system("CLS");
-				cout << "\n\n\t\t\t-Developed by-";
-				cout << "\n\n\t\t\tMitali Larioa(020)";
-				cout << "\n\n\t\t\tBinwant Kaur(030)";
-				cout << "\n\n\t\t\tAnagha Jain(037)";
-				cout << "\n\n\t\t\tAnjali Singh(038)";
-				cout << "\n\n\t\t\tAstha Khatana(040)";
-				break;
+			system("CLS");
+			cout << "\n\n\t\t\t-Developed by-";
+			cout << "\n\n\t\t\tMitali Larioa(020)";
+			cout << "\n\n\t\t\tBinwant Kaur(030)";
+			cout << "\n\n\t\t\tAnagha Jain(037)";
+			cout << "\n\n\t\t\tAnjali Singh(038)";
+			cout << "\n\n\t\t\tAstha Khatana(040)";
+			break;
 		default:cout << "\a";
 		}
 		cin.ignore();
