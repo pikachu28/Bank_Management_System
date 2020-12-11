@@ -13,7 +13,7 @@ private:
 	std::string DOB = "";
 	std::string gender = "";
 public:
-	Cust(long n);
+	Cust(){}
 	//~Cust();
 	//int getCust_id();
 	//double getBalance();
