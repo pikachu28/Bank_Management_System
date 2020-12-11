@@ -4,15 +4,10 @@
 #include "customer.h"
 
 using namespace std;
-int check;
+static int check;
 database tempdb2;
 Cust tempCust;
 
-
-employee::employee(int id)
-{
-    emp_id = id;
-}
 
 void employee::NewEmployeeReg()
 {
@@ -24,14 +19,12 @@ void employee::NewEmployeeReg()
     cout << "\n\t\t\tEnter password : ";
     cin >> empPassword;
     cout << "\n\t\t\tName of the Employee : ";
-    cin.ignore();
     cin >> empName;
     cout << "\n\t\t\tEnter Designation : ";
     cin >> desig;
     cout << "\n\t\t\tGender : ";
     cin >> gender;
-    gender = toupper(gender);
-    cout << "Enter Date of Birth (YYYY/MM/DD): ";
+    cout << "\n\t\t\tDate of Birth (YYYY/MM/DD): ";
     cin >> DOB;
     check = tempdb2.insertEmpData(emp_id, empName, desig, DOB, gender, empPassword);
     if (check)
@@ -86,8 +79,7 @@ void employee::updateDetails()
     cin >> desig;
     cout << "\n\t\t\tGender : ";
     cin >> gender;
-    gender = toupper(gender);
-    cout << "Enter Date of Birth (YYYY/MM/DD): ";
+    cout << "\n\t\t\tDate of Birth (YYYY/MM/DD): ";
     cin >> DOB;
     check = tempdb2.updateEmpData(emp_id, empName, desig, DOB);
     if (check)
@@ -99,7 +91,7 @@ void employee::updateDetails()
 
 void employee::updateCust_Details()
 {
-    int num;
+    //int num;
     cout << "\n\t\t\t-UPDATE CUSTOMER ACCOUNT- \n";
     tempCust.updateDetails();
 
