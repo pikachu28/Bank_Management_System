@@ -1,5 +1,4 @@
 #pragma once
-#include"db.h"
 #include"customer.h"
 
 class employee
@@ -13,8 +12,8 @@ private:
 	std::string gender = "";
 
 public:
-	//employee();
-	employee(int id);
+	employee(){}
+	//employee(int id);
 	void NewEmployeeReg();//to register new employees
 	void viewEmployee();
 	void VeiwAllAccounts(); // to view all user accounts from the db.-*(cust_name and account_no only.)*
