@@ -72,6 +72,7 @@ void update(int d){
     }
 
 
+
 void getBal(){
     int status = sqlite3_open("BANK.db", &db);
 	if (status) {
