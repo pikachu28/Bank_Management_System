@@ -13,6 +13,9 @@ public:
 	void open_db();
 	void create_db();
 	void close_db();
+
+	void AdminTable();
+
 	void createEmpTable();
 	int insertEmpData(int empid, std::string name, std::string desig, std::string dob, std::string gender, std::string pass);
 	int updateEmpData(int empid, std::string name, std::string desig, std::string dob);
@@ -37,4 +40,3 @@ public:
 	//void viewTransactionTable();
 	//void delete_db();//To delete the complete database.
 };
-
