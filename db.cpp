@@ -39,6 +39,31 @@ void database::close_db()
 {
 	sqlite3_close(db);
 }
+void database::AdminTable()
+{
+	sql = "CREATE TABLE IF NOT EXISTS Admin("
+		"AdminID INT PRIMARY KEY,"
+		"Name VARCHAR(60) NOT NULL,"
+		"password VARCHAR(20) NOT NULL);";
+	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &err);		//executing SQL statement
+	if (rc != SQLITE_OK) {
+		cout << "Error: " << err << endl;
+	}
+	else{
+		cout << "Table ADMIN exits!";
+	}
+	string s = "INSERT INTO Admin VALUES('111','Binwant','pass111');"
+		"INSERT INTO Admin VALUES('101','Anjali','pass101');";
+	rc = sqlite3_exec(db, s.c_str(), NULL, 0, &err);
+	if (rc != SQLITE_OK) {
+		cout << "Insert Error: " << err << endl;
+		//return 0;
+	}
+	else {
+		cout << "-> Admin Record created successfully!" << endl;
+		//return 1;
+	}
+}
 //function to create employee table in database
 void database::createEmpTable()
 {
@@ -309,8 +334,8 @@ bool database::adminLogin()
 	cout << "\n\t\t\tEnter password : ";
 	cin >> password;
 
-	//sql = "Select *FROM Administrator WHERE AdminId='" + id + "' and Password='" + password + "'";
-//	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, NULL);
+	sql = "Select *FROM Admin WHERE AdminId='" + id + "' and password='" + password + "'";
+	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, NULL);
 	if (rc != SQLITE_OK) {
 		cout << "\n\t\t\tYou are not an admin!" << endl;
 		return false;
