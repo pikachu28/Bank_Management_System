@@ -25,9 +25,9 @@ void Cust::NewAccount()
     cin >> name;
     cout << "\n\t\t\tGender : ";
     cin >> gender;
-    cout << "\n\t\t\tEnter Mobile No. : ";
+    cout << "\n\t\t\tMobile No. : ";
     cin >> mobile;
-    cout << "Enter Date of Birth (YYYY/MM/DD): ";
+    cout << "\n\t\t\tDate of Birth (YYYY/MM/DD): ";
     cin >> DOB;
     cout << "\n\t\t\tEnter The Initial Balance : ";
     cin >> balance;
@@ -51,9 +51,9 @@ void Cust::updateDetails()
     cin >> name;
     cout << "\n\t\t\tGender : ";
     cin >> gender;
-    cout << "\n\t\t\tEnter Mobile No. : ";
+    cout << "\n\t\t\tMobile No. : ";
     cin >> mobile;
-    cout << "\n\t\t\tEnter Date of Birth (YYYY/MM/DD): ";
+    cout << "\n\t\t\tDate of Birth (YYYY/MM/DD): ";
     cin >> DOB;
     check = tempdb.updateCustData(acc_no, name, DOB, mobile);
     if (check)
@@ -170,5 +170,3 @@ void Cust::deleteAcc()
             cout << "Error in deleting..!";
     }
 }
-
-
